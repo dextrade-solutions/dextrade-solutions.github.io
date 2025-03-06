@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <script src="https://www.googletagmanager.com/gtag/js?id=G-ZD7TS07S52" async></script>
+    <script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-ZD7TS07S52');
+</script>
+
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/images/logo/dextrade-short.svg" />
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Dextrade | P2P</title>
+    <meta name="description" content="Peer-to-peer decentralized exchanges">
+    <link rel="icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180">
+    <link rel="mask-icon" href="/mask-icon.svg" color="#FFFFFF">
+    <script type="module" crossorigin src="/p2p-app/assets/index-Dt7u33St.js"></script>
+    <link rel="stylesheet" crossorigin href="/p2p-app/assets/index-Cp_3rwga.css">
+  <link rel="manifest" href="/p2p-app/manifest.webmanifest"></head>
+  <body>
+    <div id="root">
+      <style>
+        /* Light mode */
+        @media (prefers-color-scheme: light) {
+            body {
+                background: #ffffff;
+            }
+        }
+        /* dark mode */
+        @media (prefers-color-scheme: dark) {
+            body {
+                background: #1D1D1D;
+            }
+        }
+        body {
+          overflow: hidden; /* Hide scrollbars */
+        }
+        video {
+          background: transparent;
+        }
+        /* Loader Styles */
+        #loading-container {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 100vh;
+        }
+
+        .spinner {
+          width: 40px;
+          height: 40px;
+          border: 4px solid rgba(0, 0, 0, 0.1);
+          border-top: 4px solid #007bff;
+          border-radius: 50%;
+          animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+          0% {
+            transform: rotate(0deg);
+          }
+          100% {
+            transform: rotate(360deg);
+          }
+        }
+      </style>
+
+      <!-- Loading Screen -->
+      <div id="loading-container">
+        <video width="150px" autoplay loop muted playsinline>
+          <source id="safariPreloaderSource" src="/images/logo/logo-animated.mov">
+          <source src="/images/logo/logo-animated.webm" type="video/webm">
+        </video>
+      </div>
+      <script>
+      function supportsHEVCAlpha() {
+            const navigator = window.navigator;
+            const ua = navigator.userAgent.toLowerCase()
+            const hasMediaCapabilities = !!(navigator.mediaCapabilities && navigator.mediaCapabilities.decodingInfo)
+            const isSafari = ((ua.indexOf('safari') != -1) && (!(ua.indexOf('chrome')!= -1) && (ua.indexOf('version/')!= -1)))
+            return isSafari && hasMediaCapabilities;
+        }
+
+        if (!supportsHEVCAlpha()) {
+          document.getElementById('safariPreloaderSource').remove();
+        }
+      </script>
+    </div>
+  </body>
+</html>
