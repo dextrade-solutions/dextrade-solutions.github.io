@@ -16,8 +16,9 @@ gtag('config', 'G-ZD7TS07S52');
     <link rel="icon" href="/favicon.ico">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180">
     <link rel="mask-icon" href="/mask-icon.svg" color="#FFFFFF">
-    <script type="module" crossorigin src="/assets/index-DXNFS6PQ.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-rvlQDg2H.css">
+    <script src="https://telegram.org/js/telegram-web-app.js?56"></script>
+    <script type="module" crossorigin src="/assets/index-CMe74zgo.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-BT7E5QQU.css">
   <link rel="manifest" href="/manifest.webmanifest"></head>
   <body>
     <div id="root">
@@ -69,23 +70,40 @@ gtag('config', 'G-ZD7TS07S52');
 
       <!-- Loading Screen -->
       <div id="loading-container">
-        <video width="150px" autoplay loop muted playsinline>
-          <source id="safariPreloaderSource" src="/images/logo/logo-animated.mov">
-          <source src="/images/logo/logo-animated.webm" type="video/webm">
+        <video id="preloaderVideo" width="150px" autoplay loop muted playsinline style="display: none;">
+            <source id="videoSource">
+            Your browser does not support the video tag.
         </video>
       </div>
       <script>
-      function supportsHEVCAlpha() {
-            const navigator = window.navigator;
-            const ua = navigator.userAgent.toLowerCase()
-            const hasMediaCapabilities = !!(navigator.mediaCapabilities && navigator.mediaCapabilities.decodingInfo)
-            const isSafari = ((ua.indexOf('safari') != -1) && (!(ua.indexOf('chrome')!= -1) && (ua.indexOf('version/')!= -1)))
-            return isSafari && hasMediaCapabilities;
+        const isAndroid = /android/i.test(navigator.userAgent);
+        const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+        const isIOSWeb = /iPhone|iPad|iPod|AppleWebKit/.test(navigator.userAgent) && !window.MSStream;
+
+        function getSupportedFormat() {
+            const video = document.createElement("video");
+            if (!isAndroid && (isIOSWeb || isSafari)) {
+                return { src: "/images/logo/logo-animated.mov" };
+            }
+            return { src: "/images/logo/logo-animated.webm", type: "video/webm" };
         }
 
-        if (!supportsHEVCAlpha()) {
-          document.getElementById('safariPreloaderSource').remove();
+        function initPreloader() {
+            const video = document.getElementById("preloaderVideo");
+            const source = document.getElementById("videoSource");
+            const format = getSupportedFormat();
+
+            if (format) {
+                source.src = format.src;
+                if (format.type) {
+                  source.type = format.type;
+                }
+                video.load(); // Reload the video element to apply changes
+                video.style.display = "block";
+            }
         }
+
+        initPreloader();
       </script>
     </div>
   </body>
